@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Администратор</title>
+		<meta charset="utf-8">
+		<meta content="" name="keywords" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
+        <script src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src='js/dhtmlxmessage.js'></script>
+        <script src="js/site.js"></script>
+		<link rel="stylesheet" type="text/css" href="stylesheets/dhtmlxmessage_dhx_skyblue.css">
+		<script language="javascript">
+			$(document).ready(function() {
+			});
+			
+			function saveComments(user_id, obj){
+				valueVal = obj.value;
+				$.post("process.php", { step: '11', user_id: user_id, value: valueVal } );
+			}
+			
+			function sendAnketa(user_id){
+				$.post("process.php", 
+							{ step: '12', user_id: user_id } ,
+							function(data){
+								if (data == "")
+									alert_error("Анкета отправлена");
+								else
+									alert_error("Ошибка отправки");
+							}
+							
+					  );
+			}
+			
+			function doLogout(){
+				window.location.href = "logout.php";
+			}
+		</script>
+	</head>
+	<body>
+		<div id="top-border">&nbsp;</div>
+		<div id="page_w">
+			<div id="header-row">
+				<h1>Список анкет</h1>
+			</div>
+			<div id="page-container_w">
+				<div id="warning-message">
+					
+				</div>
+				<form>
+					<table>
+					    <thead>
+						    <tr>
+						    	<td class="icon-sell"></td>
+						    	<td class="sell-4">ID</td>
+						    	<td class="sell-4">Email</td>
+						    	<td class="sell-4">ФИО</td>
+						    	<td class="sell-4">Дата рождения</td>
+						    	<td class="sell-4">Дата регистрации</td>
+						    	<td class="sell-4">Последнее редактирование</td>
+						    	<td class="sell-4">Состояние заполнения</td>
+						    	<td class="sell-4">Подразделение, должность</td>
+						    	<td class="sell-4">&nbsp;</td>
+						    </tr>
+					    </thead>
+					    <tbody>
+<?php
+							while ($row = mysql_fetch_assoc($query)) {
+?>
+								<tr>
+									<td class="icon-sell">
+<?
+									if ($row['anketa_file'] != ''){
+?>
+										<a href="getanketa.php?id=<?php echo( $row['id'] ) ?>" target="blank" class="icon-document">&nbsp;</a></td>
+<?
+									
+									}
+									else{
+										echo "&nbsp;";
+									}
+?>
+									<td class="sell-4"><?php echo( $row['id'] ) ?></td>
+									<td class="sell-4">
+<?php
+										if ($row['anketa_id'] > 0)
+										{
+?>
+											<a href="step1.php?aid=<?php echo( $row['anketa_id'] ) ?>"><?php echo( $row['login'] ) ?></a>
+<?php
+										}
+										else
+										{
+?>
+											<?php echo( $row['login'] ) ?>
+<?php
+										}
+?>
+									</td>
+									<td class="sell-4"><?php echo( $row['full_name'] ) ?></td>
+									<td class="sell-4"><?php echo( $row['birthday'] ) ?></td>
+									<td class="sell-4"><?php echo( $row['entry_date'] ) ?></td>
+									<td class="sell-4"><?php echo( $row['last_logged'] ) ?></td>
+									<td class="sell-4"><?php echo( $row['filled_prc'] ) ?> %</td>
+									<td class="sell-4"><textarea id="comments_<?php echo $row['id'] ?>" onChange="saveComments(<?php echo $row['id'] ?>, this)" style="height:50px;width:150px;"><?php echo( $row['comments'] ) ?></textarea></td>
+									<td class="sell-4"><?php if($row['filled_prc'] == 100){ ?><input type="button" class="btn btn-primary" value="Отправить" onClick="sendAnketa(<?php echo $row['id'] ?>)"><?php } ?></td>
+								</tr>
+<?php
+							}
+							mysql_free_result($query);
+?>
+					    </tbody>
+					</table>			    	
+<?php
+                                                                // Инстанцирование объекта `Krugozor_Pagination_Helper`,
+                                                                // в него передаётся объект класса `Krugozor_Pagination_Manager` $paginationManager
+                                                                $paginationHelper = new Krugozor_Pagination_Helper($paginationManager);
+
+                                                                // Настройка внешнего вида пагинатора
+                                                                                                   // Хотим получить стандартный вид пагинации
+                                                                $paginationHelper->setPaginationType(Krugozor_Pagination_Helper::PAGINATION_NORMAL_TYPE)
+                                                                                                   // Устанавливаем CSS-класс каждого элемента <a> в интерфейсе пагинатора
+                                                                                                 ->setCssNormalLinkClass("normal_link")
+                                                                                                   // Устанавливаем CSS-класс элемента <span> в интерфейсе пагинатора,
+                                                                                                   // страница которого открыта в текущий момент.
+                                                                                                 ->setCssActiveLinkClass("active_link")
+                                                                                                   // Устанавливаем идентификатор фрагмента гиперссылок пагинатора
+                                                                                                 ->setFragmentIdentifier("result1");
+?>
+                                                        <div>
+                                                                Всего записей: <strong><?=$paginationHelper->getPagination()->getCount()?></strong>
+                                                                <?php if ($paginationHelper->getPagination()->getCount()): ?>
+                                                                        <br /><br /><span>Страницы:</span>
+                                                                        <?=$paginationHelper->getHtml()?>
+                                                                <?php endif; ?>
+                                                        </div>
+
+			    	<div class="margined-line-34 padded-top-25">
+				    	<div class="clearfix">
+				    		<div class="pull-left blue-text">
+				    			<button class="btn" type="button" tabindex="27" onClick="doLogout();return false;">Выход</button>
+				    		</div>
+					    </div>
+			    	</div>
+				</form>
+				
+			</div>
+
+		</div>
+	</body>
+</html>

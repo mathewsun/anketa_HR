@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>anketa</Name>
+    <ProjectGuid>b0fb0e86-23a7-42cd-8526-11ebf4f280fc</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>anketa</RootNamespace>
+    <!-- important to be opened by PHP Tools, when also Phalanger Tools are installed -->
+    <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
+    <AssemblyName>anketa</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <IISProjectUrl>http://localhost:15799/</IISProjectUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <IncludeDebugInformation>false</IncludeDebugInformation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="css\default.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="images\bg.jpg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="images\close.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="images\delete.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="images\document.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="images\plus.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="img\bg_infobox.gif">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="img\h1.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="img\overlay.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="include\.htaccess">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\dhtmlxmessage.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\jquery-1.10.1.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\jquery-1.10.1.min.map">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\jquery.maskedinput.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\site.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="stylesheets\dhtmlxmessage_dhx_skyblue.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="stylesheets\theme.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="template_admin.phtml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="xml\aditional_education.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="xml\education.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="xml\language_skills.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="xml\main.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="xml\relatives.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="xml\work_activity.xml">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="add_user.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="admin.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="agree.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="finish.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="forgot.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="generate.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="getanketa.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="include\common.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="include\notification.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="include\pagination\helper.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="include\pagination\manager.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="include\security.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="index.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="login.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="logout.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="process.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="registration.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="step1.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="step2.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="step3.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="step4.php">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="step5.php">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css" />
+    <Folder Include="images" />
+    <Folder Include="img" />
+    <Folder Include="include\pagination" />
+    <Folder Include="js" />
+    <Folder Include="include" />
+    <Folder Include="xml" />
+    <Folder Include="stylesheets" />
+  </ItemGroup>
+</Project>
